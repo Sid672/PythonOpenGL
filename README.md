@@ -46,5 +46,24 @@ vertices = (
 	(1, 1, 1)  #Point 7
 	)
 ```
+- Next we connect vertices, for this we create a edges touple.
+
+```Python 
+edges = (
+	(0, 1), #This means connect Point 0 to Point 1.
+	(0, 3), #Similarly, other connections are to be made
+	(0, 5), #according to the diagram of cube.
+	(1, 2),
+	(1, 6),
+	(2, 3),
+	(2, 7),
+	(3, 4),
+	(4, 5),
+	(5, 6), 
+	(6, 7), 
+	(7, 4)
+	)
+```
+
 
 
