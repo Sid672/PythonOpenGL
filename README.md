@@ -64,6 +64,28 @@ edges = (
 	(7, 4)
 	)
 ```
+- Upto this we have completed the basic diagram requirement. We can create cube using these data but to make it more intresting we use colours on surface. For this we require two more touples: one for colors and one for surfaces.
+
+```Python
+surfaces = (
+	(0, 1, 2, 3), #This means 4 points create a face of cube.
+	(0, 3, 4, 5), #Example - We are connecting point no. 0, 3, 4, 5 for creating a face.
+	(0, 1, 6, 5),
+	(1, 2, 7, 6),
+	(2, 3, 4, 7),
+	(4, 5, 6, 7)
+	)
+
+colors = (
+	(1, 0, 0),   #Color of face no. 0;
+	(0, 1, 0),   #Six faces six colors.
+	(0, 0, 1),
+	(1, 1, 0),
+	(0, 1, 1),
+	(1, 0, 1),
+	)
+```
+
 
 
 
