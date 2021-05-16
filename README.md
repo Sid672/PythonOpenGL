@@ -85,6 +85,35 @@ colors = (
 	(1, 0, 1),
 	)
 ```
+- Now we are ready to make our cube. To do this we create a function. 
+
+```Python 
+def cube:
+    //body of function.
+```
+
+- In OpenGL every drawing statement should be written between `glBegin()` and `glEnd()`.
+
+```python
+def cube():
+
+	glBegin(GL_QUADS)
+	for surface in surfaces:
+		x = 0
+		for vertex in surface:
+			x += 1
+			glColor3fv(colors[x])
+			glVertex3fv(vertices[vertex])
+
+	glEnd()
+
+	glBegin(GL_LINES)
+	glColor3fv((0, 1, 0))
+	for edge in edges:
+		for vertex in edge:
+			glVertex3fv(vertices[vertex])
+	glEnd()
+```
 
 
 
