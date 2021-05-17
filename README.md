@@ -118,7 +118,7 @@ def cube():
 - `glColor3fv()` function is used for coloring the surfaces(face of cube).
 - `gl` stands for graphics library, `Color` stands for operation, `3fv` means function will take three arguments that are floating point value.
 - Similarly, `glVertex3fv()` has its own meaning. It is used to draw vertex.
-- One can observe that two new words are also used in the above program that are `GL_QUADS` and `GL_LINES`. These both are called constants.
+- One can observe that two words are also used in the above program that are `GL_QUADS` and `GL_LINES`. These both are called constants.
 - Constants are always written in capatial letters. The role of constant is to perform a task. For example - `GL_QUADS` is used to draw a polygon and `GL_LINES` are used to draw line segements.
 
 
