@@ -28,7 +28,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 ```
 
-- Now using your art skills draw a rough diagram on paper with proper coordinates of points as given below. 
+- Now using your art skills to draw a rough diagram on paper with proper coordinates of points as shown below. 
 
 ![](https://www.math.brown.edu/tbanchof/Beyond3d/Images/chapter8/image04.jpg)
 
