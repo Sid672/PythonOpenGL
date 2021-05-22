@@ -121,5 +121,171 @@ def cube():
 - One can observe that two words are also used in the above program that are `GL_QUADS` and `GL_LINES`. These both are called constants.
 - Constants are always written in capatial letters. The role of constant is to perform a task. For example - `GL_QUADS` is used to draw a polygon and `GL_LINES` are used to draw line segements.
 
+- It's time to step up the screen for this one can use 
+```Python
+def main():
+	pygame.init()
+	display = (800, 600)                                      #screen size
+	pygame.display.set_mode(display, DOUBLEBUF | OPENGL)      #For refresh rate(frame buffer)
+
+	gluPerspective(45, (display[0] / display[1]), 0.1,  50.0) #Here 45 is angle view,
+	                                                          #then aspect ratio of screen (800/600),
+	                                                          #zoom in, zoom out.
+```
+
+- Final step is to make some user commands to move the cube, close the window and auto movement of cube.
+- To do so one can use pygame game `pygame.event` that take input event from user like keyboard input, mouse input.
+- Last part of code looks like
+```python 
+glTranslatef(0.0, 0.0, -10)                                #self movement of cube.
+glRotatef(0, 0, 0, 0)
+
+while True:                                                #user command input part.
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			pygame.quit()
+			quit()
+
+		if event.type == pygame.KEYDOWN:          #use arrow key to move up, down, left, right. 
+			if event.key == pygame.K_LEFT:
+				glTranslatef(-1, 0, 0)
+
+			if event.key == pygame.K_RIGHT:
+				glTranslatef(1, 0, 0)
+
+			if event.key == pygame.K_UP:
+				glTranslatef(0, 1, 0)
+
+			if event.key == pygame.K_DOWN:
+				glTranslatef(0, -1, 0)
+
+	glRotatef(1, 3, 1, 1)                            #auto rotation of cube at point(1, 3, 1) with speed 1.
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+	cube()
+	
+	pygame.display.flip()                            #update button.
+	pygame.time.wait(10)
 
 
+main()                                                   #function call.
+```
+
+- Overall code looks like: 
+```python
+
+import pygame
+from pygame.locals import *
+
+from OpenGL.GL import *
+from OpenGL.GLU import *
+
+vertices = (
+	(0, 0, 0),
+	(4, 0, 0),
+	(4, 4, 0), 
+	(0, 4, 0),
+	(0, 4, 4),
+	(0, 0, 4),
+	(4, 0, 4), 
+	(4, 4, 4)
+	)
+
+edges = (
+	(0, 1),
+	(0, 3), 
+	(0, 5),
+	(1, 2),
+	(1, 6),
+	(2, 3),
+	(2, 7),
+	(3, 4),
+	(4, 5),
+	(5, 6), 
+	(6, 7), 
+	(7, 4)
+	)
+
+surfaces = (
+	(0, 1, 2, 3),
+	(0, 3, 4, 5),
+	(0, 1, 6, 5),
+	(1, 2, 7, 6),
+	(2, 3, 4, 7),
+	(4, 5, 6, 7)
+	)
+
+colors = (
+	(1, 0, 0),
+	(0, 1, 0),
+	(0, 0, 1),
+	(1, 1, 0),
+	(0, 1, 1),
+	(1, 0, 1),
+	)
+
+def cube():
+
+	glBegin(GL_QUADS)
+	for surface in surfaces:
+		x = 0
+		for vertex in surface:
+			x += 1
+			glColor3fv(colors[x])
+			glVertex3fv(vertices[vertex])
+
+	glEnd()
+
+	glBegin(GL_LINES)
+	glColor3fv((0, 1, 0))
+	for edge in edges:
+		for vertex in edge:
+			glVertex3fv(vertices[vertex])
+	glEnd()
+
+
+def main():
+	pygame.init()
+	display = (800, 600)
+	pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
+
+
+	gluPerspective(45, (display[0] / display[1]), 0.1,  50.0)
+
+	glTranslatef(0.0, 0.0, -10)
+
+	glRotatef(0, 0, 0, 0)
+
+
+	while True:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_LEFT:
+					glTranslatef(-1, 0, 0)
+
+				if event.key == pygame.K_RIGHT:
+					glTranslatef(1, 0, 0)
+
+				if event.key == pygame.K_UP:
+					glTranslatef(0, 1, 0)
+
+				if event.key == pygame.K_DOWN:
+					glTranslatef(0, -1, 0)
+
+		glRotatef(1, 3, 1, 1)
+		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+		cube()
+
+		pygame.display.flip()
+		pygame.time.wait(10)
+
+main()
+```
+### Done!
+![](https://media3.giphy.com/media/obN7DdnUWxuyqz5qZS/200.webp?cid=ecf05e47xa73yjdd83bqrh0835n48zq1zpfx0xcdja4a0mgf&rid=200.webp&ct=g)
+
+## License
+### Apache-2.0
